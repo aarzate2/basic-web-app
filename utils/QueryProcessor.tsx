@@ -22,6 +22,15 @@ export default function QueryProcessor(query: string): string {
       return "No numbers found in query.";
     }
   }
+   if (query.toLowerCase().match(/what is \d+ plus \d+/)) {
+    const numbers = query.match(/\d+/g)?.map(Number);
+    if (numbers && numbers.length === 2) {
+      const sum = numbers[0] + numbers[1];
+      return sum.toString();
+    } else {
+      return "Invalid addition query.";
+    }
+  }
 
   return "";
 }
